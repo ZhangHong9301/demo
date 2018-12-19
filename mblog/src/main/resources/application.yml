@@ -1,7 +1,32 @@
+server:
+  port: 8080
 # DataSource Config
 spring:
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.0.251:3306/mblog
+    url: jdbc:mysql://192.168.0.251:3306/mblog?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
     username: zhanghong
     password: zhanghong
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+# Mybatis
+mybatis:
+  type-aliases-package: com.zxf.mblog.entity # 注意：对应实体类的路径
+  mapper-locations: com/zxf/mblog/mapper/xml/*.xml    #注意：一定要对应mapper映射xml文件的所在路径
+
+# Pagehelper分页插件
+pagehelper:
+#  dialect: Mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+# Logs
+logging:
+  level:
+    com.zxf.mblog.mapper: debug
