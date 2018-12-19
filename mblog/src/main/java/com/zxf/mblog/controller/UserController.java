@@ -41,7 +41,7 @@ public class UserController {
     public String getUserList() {
         List<Map<String, Object>> userList = userService.getUserList();
         logger.info("ResponseData.success(userList): " + ResponseData.success(userList));
-        
+
         return ResponseData.success(userList);
     }
 }
