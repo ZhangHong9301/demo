@@ -4,13 +4,16 @@ import com.zxf.mblog.common.ResponseData;
 import com.zxf.mblog.common.ResponseEnum;
 import com.zxf.mblog.exception.BusinessException;
 import com.zxf.mblog.service.UserService;
+import com.zxf.mblog.utils.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,11 +28,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 @Api(value = "user", description = "Rest API for user operations", tags = "User API")
+@Slf4j
 public class UserController {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
     @Resource
     UserService userService;
+
+    @Resource
+    RedisUtil redisUtil;
 
     @GetMapping(value = "/list", produces = "application/json")
     @ApiOperation(value = "Display greeting message to non-admin user")
@@ -40,8 +46,15 @@ public class UserController {
     )
     public String getUserList() {
         List<Map<String, Object>> userList = userService.getUserList();
-        logger.info("ResponseData.success(userList): " + ResponseData.success(userList));
 
         return ResponseData.success(userList);
+    }
+
+    @PostMapping("/redisTest")
+    @ApiOperation(value = "Test Redis")
+    public String redisTest() {
+        redisUtil.set("Test", "This is a test for redis!");
+        log.info("Test: " + redisUtil.get("Test"));
+        return ResponseData.success();
     }
 }
