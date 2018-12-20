@@ -35,8 +35,9 @@ hs_err_pid*
 *.iws
 *.iml
 *.ipr
-*.mvn
-mvnw.*
+mvnw
+*.cmd
+.mvn
 
 # Eclipse
 .settings/
