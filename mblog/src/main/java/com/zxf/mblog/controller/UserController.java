@@ -4,6 +4,7 @@ import com.zxf.mblog.common.ResponseData;
 import com.zxf.mblog.common.ResponseEnum;
 import com.zxf.mblog.exception.BusinessException;
 import com.zxf.mblog.service.UserService;
+import com.zxf.mblog.utils.CaptchaUtil;
 import com.zxf.mblog.utils.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,12 +13,14 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +39,8 @@ public class UserController {
 
     @Resource
     RedisUtil redisUtil;
+
+
 
     @GetMapping(value = "/list", produces = "application/json")
     @ApiOperation(value = "Display greeting message to non-admin user")
@@ -56,5 +61,15 @@ public class UserController {
         redisUtil.set("Test", "This is a test for redis!");
         log.info("Test: " + redisUtil.get("Test"));
         return ResponseData.success();
+    }
+
+    @PostMapping("/hello")
+    @ApiOperation(value = "Test Captcha")
+    public String hello(HttpServletRequest request){
+        if (!CaptchaUtil.checkCaptcha(request)) {
+            return ResponseData.failure(ResponseEnum.DATA_IS_WRONG);
+        } else {
+            return ResponseData.success();
+        }
     }
 }

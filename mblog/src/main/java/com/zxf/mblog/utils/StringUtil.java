@@ -18,9 +18,14 @@ public class StringUtil {
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
             .enable(MapperFeature.USE_ANNOTATIONS);
 
+    /**
+     * 对象转字符串
+     * @param object
+     * @return
+     */
     public static String objectToString(Object object) {
         String result = null;
-        if (FileTest.isNull(object)) {
+        if (isNull(object)) {
             return result;
         }
         try {
@@ -29,6 +34,20 @@ public class StringUtil {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /**
+     * 对象非空判断
+     * @param object
+     * @return
+     */
+    public static boolean isNull(Object object) {
+        if (object != null) {
+            return false;
+        }else {
+            return true;
+        }
+
     }
 
 
