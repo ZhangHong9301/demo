@@ -1,11 +1,10 @@
 package com.zxf.mblog.common;
 
 import com.github.pagehelper.Page;
-import com.zxf.mblog.utils.StringUtil;
+import com.zxf.mblog.common.utils.StringUtil;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.zxf.mblog.utils;
+package com.zxf.mblog.common.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -1,4 +1,4 @@
-package com.zxf.mblog.utils;
+package com.zxf.mblog.common.utils;
 
 import org.springframework.stereotype.Component;
 
