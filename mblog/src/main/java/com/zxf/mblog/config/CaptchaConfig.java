@@ -17,10 +17,10 @@ public class CaptchaConfig {
     public DefaultKaptcha producer () {
         Properties propertis = new Properties();
         propertis.put("kaptcha.border", "no");
-        propertis.put("kaptcha.image.height", "38");
-        propertis.put("kaptcha.image.width", "150");
+        propertis.put("kaptcha.image.height", "29");
+        propertis.put("kaptcha.image.width", "80");
         propertis.put("kaptcha.textproducer.font.color", "blue");
-        propertis.put("kaptcha.textproducer.font.size", "32");
+        propertis.put("kaptcha.textproducer.font.size", "25");
         propertis.put("kaptcha.textproducer.char.space", "6"); /*验证码文本字符间距*/
         Config config = new Config(propertis);
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();

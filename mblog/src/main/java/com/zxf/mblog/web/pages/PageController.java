@@ -1,4 +1,4 @@
-package com.zxf.mblog.controller;
+package com.zxf.mblog.web.pages;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
@@ -38,8 +38,15 @@ public class PageController {
 
     @GetMapping(value = {"/hello"})
     public String hello() {
-        log.info("----------index.html");
+        log.info("----------hello.html");
         return "hello";
+    }
+
+    @GetMapping(value = {"/userLogin"})
+    public String login() {
+        log.info("----------login.html");
+        // return "auth/login";
+        return "auth/loginTest";
     }
 
     @GetMapping("/captcha")
